@@ -5,7 +5,7 @@
 
 /**
  * @description This class provides functionality to enable specific Apex Trigger handlers by name
- * within the current transaction. It extends the TransactionManager to leverage
+ * within the current transaction. It uses the TransactionManager to leverage
  * transactional control for enabling trigger handlers.
  */
 public with sharing class FlowActionEnableTriggerHandler {

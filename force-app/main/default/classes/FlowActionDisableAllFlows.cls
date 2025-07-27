@@ -5,7 +5,7 @@
 
 /**
  * @description This class provides functionality to disable all Record-Triggered Flows
- * within the current transaction. It extends the TransactionManager to leverage
+ * within the current transaction. It uses the TransactionManager to leverage
  * transactional control for disabling flows.
  */
 public with sharing class FlowActionDisableAllFlows {
