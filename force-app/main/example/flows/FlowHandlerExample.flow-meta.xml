@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Usage: update the &apos;flowName&apos; with the API Name of the current Flow to check it&apos;s enabled status</description>
+        <name>isCurrentFlowEnabled</name>
+        <label>isCurrentFlowEnabled</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FlowHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>isEnabled</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>FlowHandlerExample</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowHandler</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Usage: add your own logic in the &apos;yes&apos; branch</description>
+        <name>FlowLogicThere</name>
+        <label>// Flow logic there</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Description</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Example Flow</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Usage: don&apos;t modify the decision, use the &apos;yes&apos; branch for the Flow logic</description>
+        <name>isEnabled</name>
+        <label>isEnabled</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>no, skip Flow execution</defaultConnectorLabel>
+        <rules>
+            <name>isEnabled_yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isCurrentFlowEnabled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>FlowLogicThere</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>FlowHandler Example {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>FlowHandler Example</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>isCurrentFlowEnabled</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

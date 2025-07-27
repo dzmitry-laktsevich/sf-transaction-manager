@@ -1,0 +1,11 @@
+# Ignore IDE and editor files
+.idea/
+.vscode/
+
+# Ignore sfdx files
+.sfdx/
+.sf/
+
+#ignore copilot files
+.github/
+
